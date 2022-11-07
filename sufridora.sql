@@ -37,7 +37,9 @@ CREATE TABLE weapons_types (
 
 INSERT INTO weapons_types (type, description, icon)
     VALUES ("Melee",  "Cuerpor a cuerpo", "melee.png"),
-           ("Rango",  "Distancia", "range.png");
+           ("Rango",  "Distancia", "range.png"),
+	   ("Magical", "Magia potagia", "magic.png"),
+	   ("Divine", "Es divino", "divine.png");
 
 CREATE TABLE weapons (
     id_weapon INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -63,15 +65,57 @@ CREATE TABLE weapons (
     cost FLOAT,
     id_weapon_type INT UNSIGNED,
 
-    FOREIGN KEY (id_weapon_type) REFERENCES weapon_types (id_weapon_type)
+    FOREIGN KEY (id_weapon_type) REFERENCES weapons_types (id_weapon_type)
 );
 
-INSERT INTO weapons (weapon, description, grip, durability, distance, critical_rate, rarity, quality, `range`, rate, weight, notoriety, stealth, physic_damage, physic_defense, magic_damage, magic_defense, `level`, level_min, cost, id_weapon_type)
-VALUES     ("Brazo de Bebé", NULL, 1, 100, 0.5, NULL, 0, 0, 0, NULL, 0.3, 100, NULL, NULL, 40, NULL, 7, 5, -1, 1),
-    ("Estelada", "Una bandera con una estrella :D", 1, 1714, 3, NULL, 0, 100, 1, 1, 1, 1, 1, 1, 1, 1, 102, 100, 1, 1),
-    ("Arco Flameante", "Un arco to wapo", 2, 85, 70, 20, 2, 6, 20, 2, 0.3, 4, 0, 36, 0, 14, 7, 5, -1, 2),
-    ("Astrape", "El rayo de zeus", 1, -1, 1000, 100, 2, 10, 20, 2, 0.3, 4, 4, 30, 100, 100, 30, 100, 100, 2),
-    ("Espada de Yerba", NULL, 1, 900, 1.5, 50, 50, 4, 6, 6, 4, 5, 8, 70, 0, 100, 2, 100, 50, 1);
+
+
+
+
+INSERT INTO `weapons`(`weapon`, `description`, `grip`, `durability`, 
+                      `distance`, `critical_rate`, `rarity`, `quality`, 
+                      `range`, `rate`, `weight`, `notoriety`, `stealth`, 
+                      `physic_damage`, `physic_defense`, `magic_damage`, 
+                      `magic_defense`, `level`, `level_min`, `cost`, `id_weapon_type`) 
+                      
+VALUES ("Brazo de Bebé", NULL, 1, 100, 
+        0.5, NULL, 0, 0, 
+        0, NULL, 0.3, 100, NULL, 
+        NULL, 40, NULL,
+        4, 7, 5, -1, 1);
+        
+INSERT INTO `weapons`(`weapon`, `description`, `grip`, `durability`, 
+                      `distance`, `critical_rate`, `rarity`, `quality`, 
+                      `range`, `rate`, `weight`, `notoriety`, `stealth`, 
+                      `physic_damage`, `physic_defense`, `magic_damage`, 
+                      `magic_defense`, `level`, `level_min`, `cost`, `id_weapon_type`) 
+VALUES 
+    ("Estelada", "Una bandera con una estrella :D", 1, 1714, 
+     3, NULL, 0, 100, 
+     1, 1, 1, 1, 1, 
+     1, 1, 1, 
+     1, 102, 100, 1, 1);
+    
+    INSERT INTO `weapons`(`weapon`, `description`, `grip`, `durability`, 
+                      `distance`, `critical_rate`, `rarity`, `quality`, 
+                      `range`, `rate`, `weight`, `notoriety`, `stealth`, 
+                      `physic_damage`, `physic_defense`, `magic_damage`, 
+                      `magic_defense`, `level`, `level_min`, `cost`, `id_weapon_type`) 
+VALUES 
+    ("Arco Flameante", "Un arco to wapo", 2, 85, 70, 20, 2, 6, 20, 2, 0.3, 4, 0, 0, 36, 0, 14, 7, 5, -1, 2),
+    ("Astrape", "El rayo de zeus", 1, -1, 1000, 100, 2, 10, 20, 2, 0.3, 4, 4, 0, 30, 100, 100, 30, 100, 100, 2),
+    ("Espada de Yerba", NULL, 1, 900, 1.5, 50, 50, 4, 6, 6, 4, 5, 8, 70, 70, 0, 100, 2, 100, 50, 1);
+
+
+
+INSERT INTO weapons_materials (id_weapon, id_material) 
+VALUES (1, 3),
+       (1, 11),
+       (2, 4),
+       (2, 12),
+       (3, 1),
+       (3, 5),
+       (3, 9);
 
 
 CREATE TABLE weapons_materials (
